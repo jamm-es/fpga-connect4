@@ -1,0 +1,23 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../vga.srcs/sources_1/new/TESTcore_design.v" \
+"../../../../sprite_modules/bg_tile.v" \
+"../../../../sprite_modules/board.v" \
+"../../../../sprite_modules/logo.v" \
+"../../../../sprite_modules/red_indicator.v" \
+"../../../../sprite_modules/red_piece.v" \
+"../../../../sprite_modules/red_wins.v" \
+"../../../../sprite_modules/reds_turn.v" \
+"../../../../sprite_modules/tie_game.v" \
+"../../../../vga.srcs/sources_1/new/vga.v" \
+"../../../../sprite_modules/yellow_indicator.v" \
+"../../../../sprite_modules/yellow_piece.v" \
+"../../../../sprite_modules/yellow_wins.v" \
+"../../../../sprite_modules/yellows_turn.v" \
+"../../../../vga.srcs/sources_1/new/vga_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

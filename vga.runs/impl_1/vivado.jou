@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Apr 18 03:14:59 2024
+# Process ID: 43744
+# Current directory: C:/Users/james/Documents/vga/vga.runs/impl_1
+# Command line: vivado.exe -log vga.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source vga.tcl -notrace
+# Log file: C:/Users/james/Documents/vga/vga.runs/impl_1/vga.vdi
+# Journal file: C:/Users/james/Documents/vga/vga.runs/impl_1\vivado.jou
+# Running On: me, OS: Windows, CPU Frequency: 2918 MHz, CPU Physical cores: 14, Host memory: 34016 MB
+#-----------------------------------------------------------
+source vga.tcl -notrace

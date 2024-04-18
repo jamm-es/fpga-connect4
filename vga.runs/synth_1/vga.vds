@@ -1,0 +1,551 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Apr 18 03:13:51 2024
+# Process ID: 40688
+# Current directory: C:/Users/james/Documents/vga/vga.runs/synth_1
+# Command line: vivado.exe -log vga.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vga.tcl
+# Log file: C:/Users/james/Documents/vga/vga.runs/synth_1/vga.vds
+# Journal file: C:/Users/james/Documents/vga/vga.runs/synth_1\vivado.jou
+# Running On: me, OS: Windows, CPU Frequency: 2918 MHz, CPU Physical cores: 14, Host memory: 34016 MB
+#-----------------------------------------------------------
+source vga.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/james/Documents/vga/vga.srcs/utils_1/imports/synth_1/vga.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/james/Documents/vga/vga.srcs/utils_1/imports/synth_1/vga.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top vga -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 28388
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:07 . Memory (MB): peak = 1417.863 ; gain = 440.387
+---------------------------------------------------------------------------------
+INFO: [Synth 8-11241] undeclared symbol 'hValid', assumed default net type 'wire' [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v:51]
+INFO: [Synth 8-11241] undeclared symbol 'vValid', assumed default net type 'wire' [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v:118]
+INFO: [Synth 8-6157] synthesizing module 'vga' [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v:23]
+INFO: [Synth 8-6157] synthesizing module 'red_piece' [C:/Users/james/Documents/vga/sprite_modules/red_piece.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'red_piece' (0#1) [C:/Users/james/Documents/vga/sprite_modules/red_piece.v:20]
+INFO: [Synth 8-6157] synthesizing module 'yellow_piece' [C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'yellow_piece' (0#1) [C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v:20]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v:73]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v:140]
+INFO: [Synth 8-6157] synthesizing module 'TESTcore_design' [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TESTcore_design' (0#1) [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:23]
+INFO: [Synth 8-6157] synthesizing module 'corner_border_check' [C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'corner_border_check' (0#1) [C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v:20]
+INFO: [Synth 8-6157] synthesizing module 'bg_tile' [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:20]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:40]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:43]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:85]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:127]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:169]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:211]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:253]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:295]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:337]
+INFO: [Synth 8-6155] done synthesizing module 'bg_tile' (0#1) [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:20]
+INFO: [Synth 8-6157] synthesizing module 'logo' [C:/Users/james/Documents/vga/sprite_modules/logo.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'logo' (0#1) [C:/Users/james/Documents/vga/sprite_modules/logo.v:20]
+INFO: [Synth 8-6157] synthesizing module 'board' [C:/Users/james/Documents/vga/sprite_modules/board.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'board' (0#1) [C:/Users/james/Documents/vga/sprite_modules/board.v:20]
+INFO: [Synth 8-6157] synthesizing module 'reds_turn' [C:/Users/james/Documents/vga/sprite_modules/reds_turn.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'reds_turn' (0#1) [C:/Users/james/Documents/vga/sprite_modules/reds_turn.v:20]
+INFO: [Synth 8-6157] synthesizing module 'yellows_turn' [C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'yellows_turn' (0#1) [C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v:20]
+INFO: [Synth 8-6157] synthesizing module 'red_wins' [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:20]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:43]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:309]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:575]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:841]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:1107]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:1373]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:1639]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:1905]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:2171]
+INFO: [Synth 8-6155] done synthesizing module 'red_wins' (0#1) [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:20]
+INFO: [Synth 8-6157] synthesizing module 'yellow_wins' [C:/Users/james/Documents/vga/sprite_modules/yellow_wins.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'yellow_wins' (0#1) [C:/Users/james/Documents/vga/sprite_modules/yellow_wins.v:20]
+INFO: [Synth 8-6157] synthesizing module 'tie_game' [C:/Users/james/Documents/vga/sprite_modules/tie_game.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'tie_game' (0#1) [C:/Users/james/Documents/vga/sprite_modules/tie_game.v:20]
+INFO: [Synth 8-6157] synthesizing module 'red_indicator' [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:20]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:43]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:85]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:127]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:169]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:211]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:253]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:295]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:337]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:379]
+INFO: [Synth 8-6155] done synthesizing module 'red_indicator' (0#1) [C:/Users/james/Documents/vga/sprite_modules/red_indicator.v:20]
+INFO: [Synth 8-6157] synthesizing module 'yellow_indicator' [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:20]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:43]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:85]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:127]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:169]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:211]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:253]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:295]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:337]
+INFO: [Synth 8-226] default block is never used [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:379]
+INFO: [Synth 8-6155] done synthesizing module 'yellow_indicator' (0#1) [C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'vga' (0#1) [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v:23]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_piece.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_piece.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_piece.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_piece.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_piece.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v:38]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[13] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[12] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[11] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[10] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[9] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[8] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[7] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[6] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[5] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[4] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[3] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[2] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[1] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceXOffset_reg[0] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:48]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[14] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[13] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[12] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[11] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[10] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[9] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[8] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[7] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[6] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[5] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[4] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[3] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[2] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[1] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element redPieceYOffset_reg[0] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:47]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[20] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[19] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[18] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[17] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[16] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[15] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[14] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[13] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[12] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[11] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[10] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[9] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[8] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[7] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[6] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[5] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[4] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[3] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[2] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[1] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceXOffset_reg[0] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:50]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceYOffset_reg[20] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:49]
+WARNING: [Synth 8-6014] Unused sequential element yellowPieceYOffset_reg[0] was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:49]
+WARNING: [Synth 8-6014] Unused sequential element showLogo_reg was removed.  [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:65]
+WARNING: [Synth 8-3848] Net showRedsTurn in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:27]
+WARNING: [Synth 8-3848] Net showYellowsTurn in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:28]
+WARNING: [Synth 8-3848] Net showRedWins in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:29]
+WARNING: [Synth 8-3848] Net showYellowWins in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:30]
+WARNING: [Synth 8-3848] Net showTieGame in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:31]
+WARNING: [Synth 8-3848] Net showRedIndicator in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:32]
+WARNING: [Synth 8-3848] Net redIndicatorXOffset in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:33]
+WARNING: [Synth 8-3848] Net showYellowIndicator in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:34]
+WARNING: [Synth 8-3848] Net yellowIndicatorXOffset in module/entity TESTcore_design does not have driver. [C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/bg_tile.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/logo.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/logo.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/logo.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/logo.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/logo.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/board.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/board.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/board.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/board.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/board.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/reds_turn.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/reds_turn.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/reds_turn.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/reds_turn.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/reds_turn.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:35]
+WARNING: [Synth 8-6014] Unused sequential element xSprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:36]
+WARNING: [Synth 8-6014] Unused sequential element ySprite_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:37]
+WARNING: [Synth 8-6014] Unused sequential element inBounds_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/red_wins.v:38]
+WARNING: [Synth 8-6014] Unused sequential element xOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellow_wins.v:34]
+WARNING: [Synth 8-6014] Unused sequential element yOffset_reg was removed.  [C:/Users/james/Documents/vga/sprite_modules/yellow_wins.v:35]
+INFO: [Common 17-14] Message 'Synth 8-6014' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-7129] Port showRedsTurn in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port showYellowsTurn in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port showRedWins in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port showYellowWins in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port showTieGame in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port showRedIndicator in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[9] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[8] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[7] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[6] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[5] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[4] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[3] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[2] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[1] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port redIndicatorXOffset[0] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port showYellowIndicator in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[9] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[8] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[7] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[6] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[5] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[4] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[3] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[2] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[1] in module TESTcore_design is either unconnected or has no load
+WARNING: [Synth 8-7129] Port yellowIndicatorXOffset[0] in module TESTcore_design is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 1598.531 ; gain = 621.055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 1598.531 ; gain = 621.055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 1598.531 ; gain = 621.055
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 1598.531 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/james/Documents/vga/vga.srcs/constrs_1/new/vga.xdc]
+CRITICAL WARNING: [Common 17-165] Too many positional options when parsing 'period', please type 'create_clock -help' for usage info. [C:/Users/james/Documents/vga/vga.srcs/constrs_1/new/vga.xdc:7]
+Finished Parsing XDC File [C:/Users/james/Documents/vga/vga.srcs/constrs_1/new/vga.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/james/Documents/vga/vga.srcs/constrs_1/new/vga.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/vga_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/vga_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1661.754 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1661.754 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:15 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:15 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:15 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'hState_reg' in module 'vga'
+INFO: [Synth 8-802] inferred FSM for state register 'vState_reg' in module 'vga'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+              hSyncPulse |                             1000 |                             1000
+              hBackPorch |                             0100 |                             0100
+            hDisplayTime |                             0010 |                             0010
+             hFrontPorch |                             0001 |                             0001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'hState_reg' in module 'vga'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+              vSyncPulse |                             1000 |                             1000
+              vBackPorch |                             0100 |                             0100
+            vDisplayTime |                             0010 |                             0010
+             vFrontPorch |                             0001 |                             0001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'vState_reg' in module 'vga'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:17 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   10 Bit       Adders := 62    
+	   3 Input   10 Bit       Adders := 87    
+	   2 Input    1 Bit       Adders := 1     
++---Registers : 
+	               10 Bit    Registers := 37    
+	                4 Bit    Registers := 58    
+	                1 Bit    Registers := 60    
++---Muxes : 
+	   5 Input   10 Bit        Muxes := 2     
+	   2 Input   10 Bit        Muxes := 1     
+	  13 Input    4 Bit        Muxes := 378   
+	 161 Input    4 Bit        Muxes := 5     
+	   8 Input    4 Bit        Muxes := 10    
+	 107 Input    4 Bit        Muxes := 18    
+	   5 Input    4 Bit        Muxes := 6     
+	 133 Input    4 Bit        Muxes := 3     
+	   4 Input    4 Bit        Muxes := 6     
+	  43 Input    4 Bit        Muxes := 6     
+	  51 Input    4 Bit        Muxes := 2     
+	  64 Input    4 Bit        Muxes := 2     
+	  86 Input    4 Bit        Muxes := 4     
+	  55 Input    4 Bit        Muxes := 3     
+	  10 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	  16 Input    4 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 1     
+	 107 Input    3 Bit        Muxes := 3     
+	 100 Input    3 Bit        Muxes := 1     
+	 133 Input    2 Bit        Muxes := 1     
+	  51 Input    2 Bit        Muxes := 4     
+	  86 Input    2 Bit        Muxes := 5     
+	   5 Input    1 Bit        Muxes := 7     
+	   4 Input    1 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:32 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------+--------------+---------------+----------------+
+|Module Name | RTL Object   | Depth x Width | Implemented As | 
++------------+--------------+---------------+----------------+
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|board       | paletteIndex | 256x4         | LUT            | 
+|board       | paletteIndex | 256x4         | LUT            | 
+|board       | paletteIndex | 256x4         | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|logo        | paletteIndex | 128x3         | LUT            | 
+|board       | paletteIndex | 256x4         | LUT            | 
+|board       | paletteIndex | 256x4         | LUT            | 
+|board       | paletteIndex | 256x4         | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|red_wins    | paletteIndex | 64x2          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
+|tie_game    | paletteIndex | 64x3          | LUT            | 
++------------+--------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:35 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:36 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:36 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     2|
+|2     |CARRY4 |   102|
+|3     |LUT1   |   195|
+|4     |LUT2   |    69|
+|5     |LUT3   |    65|
+|6     |LUT4   |    88|
+|7     |LUT5   |   105|
+|8     |LUT6   |   603|
+|9     |MUXF7  |    16|
+|10    |MUXF8  |     3|
+|11    |FDRE   |   218|
+|12    |IBUF   |     1|
+|13    |OBUF   |    14|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:38 . Memory (MB): peak = 1661.754 ; gain = 621.055
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:39 . Memory (MB): peak = 1661.754 ; gain = 684.277
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1661.754 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 121 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1661.754 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 99d812a8
+INFO: [Common 17-83] Releasing license: Synthesis
+96 Infos, 137 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:42 . Memory (MB): peak = 1661.754 ; gain = 1091.055
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1661.754 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/james/Documents/vga/vga.runs/synth_1/vga.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file vga_utilization_synth.rpt -pb vga_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 18 03:14:41 2024...

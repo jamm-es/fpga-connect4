@@ -1,0 +1,21 @@
+0.7
+2020.2
+Oct 13 2023
+20:47:58
+C:/Users/james/Documents/vga/sprite_modules/bg_tile.v,1713430428,verilog,,C:/Users/james/Documents/vga/sprite_modules/board.v,,bg_tile,,,,,,,,
+C:/Users/james/Documents/vga/sprite_modules/board.v,1713430429,verilog,,C:/Users/james/Documents/vga/sprite_modules/logo.v,,board,,,,,,,,
+C:/Users/james/Documents/vga/sprite_modules/logo.v,1713430428,verilog,,C:/Users/james/Documents/vga/sprite_modules/red_indicator.v,,logo,,,,,,,,
+C:/Users/james/Documents/vga/sprite_modules/red_indicator.v,1713430428,verilog,,C:/Users/james/Documents/vga/sprite_modules/red_piece.v,,red_indicator,,,,,,,,
+C:/Users/james/Documents/vga/sprite_modules/red_piece.v,1713430428,verilog,,C:/Users/james/Documents/vga/sprite_modules/red_wins.v,,red_piece,,,,,,,,
+C:/Users/james/Documents/vga/sprite_modules/red_wins.v,1713430429,verilog,,C:/Users/james/Documents/vga/sprite_modules/reds_turn.v,,red_wins,,,,,,,,
+C:/Users/james/Documents/vga/sprite_modules/reds_turn.v,1713430429,verilog,,C:/Users/james/Documents/vga/sprite_modules/tie_game.v,,reds_turn,,,,,,,,
+C:/Users/james/Documents/vga/sprite_modules/tie_game.v,1713430429,verilog,,C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v,,tie_game,,,,,,,,
+,,,,C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v,,yellow_indicator,,,,,,,,
+,,,,C:/Users/james/Documents/vga/sprite_modules/yellow_wins.v,,yellow_piece,,,,,,,,
+,,,,C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v,,yellow_wins,,,,,,,,
+,,,,C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga_tb.v,,yellows_turn,,,,,,,,
+C:/Users/james/Documents/vga/vga.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,,,,,,,
+C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v,1713433209,verilog,,C:/Users/james/Documents/vga/sprite_modules/bg_tile.v,,TESTcore_design,,,,,,,,
+C:/Users/james/Documents/vga/vga.srcs/sources_1/new/connect_4_core.v,1713137002,verilog,,C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v,,connect_4_core,,,,,,,,
+C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v,1713432968,verilog,,C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v,,vga,,,,,,,,
+C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga_tb.v,1713061602,verilog,,,,vga_tb,,,,,,,,

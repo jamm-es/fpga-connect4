@@ -1,0 +1,40 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 04/13/2024 03:52:05 PM
+// Design Name: 
+// Module Name: vga_tb
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module vga_tb(hSync, vSync);
+
+    output hSync;
+    output vSync;
+    
+    reg clk;
+    initial begin
+        forever begin
+            clk = 0;
+            #5
+            clk = ~clk;
+            #5
+        end
+    end
+
+    vga display(.sysClk(clk), .hSync(hSync), .vSync(vSync));
+
+endmodule
