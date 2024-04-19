@@ -20,14 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu);
+module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR, BtnC);
     input wire sysClk;
     output reg hSync;
     output reg vSync;
     output reg[3:0] vgaRed;
     output reg[3:0] vgaGrn;
     output reg[3:0] vgaBlu;
-    
+    input BtnL, BtnU, BtnD, BtnR, BtnC;	
     
     // create 25 MHz pixel clock for 480x600 video output
     reg pixClk;
@@ -114,7 +114,8 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu);
     reg [9:0] vCnt;
     reg [3:0] vState;
     reg [9:0] pixY;
-    reg frameClk;
+    reg frameClk, rest;
+    
     assign vValid = vState[1];
     localparam vSyncPulse   = 4'b1000;
     localparam vBackPorch   = 4'b0100;
@@ -177,11 +178,16 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu);
             end
         endcase
     end
-
+    //reg btn_left, btn_right, btn_up;
+    //assign btn_left = BtnL;
+    //assign btn_right = BtnR;
+    //assign btn_up = BtnU;
+    assign reset = BtnC;
     wire showLogo;
     wire [9:0] boardYOffset;
     wire showRedsTurn;
     wire showYellowsTurn;
+    wire current_player;
     wire showRedWins;
     wire showYellowWins;
     wire showTieGame;
@@ -193,6 +199,7 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu);
     wire [9:0] redPieceXOffset [20:0];
     wire [9:0] yellowPieceYOffset [20:0];
     wire [9:0] yellowPieceXOffset [20:0];
+    wire game_over;
     wire showCornerBorderCheck;
     
     
@@ -214,10 +221,15 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu);
      
     TESTcore_design core_design(
         .clk(frameClk),
+        .reset(reset),
+        .btn_left(BtnL),
+        .btn_right(BtnR),
+        .btn_up(BtnU),
         .showLogo(showLogo),
         .boardYOffset(boardYOffset),
         .showRedsTurn(showRedsTurn),
         .showYellowsTurn(showYellowsTurn),
+        // .current_player(current_player),
         .showRedWins(showRedWins),
         .showYellowWins(showYellowWins),
         .showTieGame(showTieGame),
@@ -229,7 +241,8 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu);
         .FLAT__redPieceXOffset(FLAT__redPieceXOffset),
         .FLAT__yellowPieceYOffset(FLAT__yellowPieceYOffset),
         .FLAT__yellowPieceXOffset(FLAT__yellowPieceXOffset),
-        .showCornerBorderCheck(showCornerBorderCheck)
+        .showCornerBorderCheck(showCornerBorderCheck),
+        .game_over(game_over)
     );
 
 

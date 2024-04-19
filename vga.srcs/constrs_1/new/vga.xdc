@@ -1,4 +1,4 @@
-# james's nexys a7 constraints (used for USC EE-354 final project)
+# james & syna's nexys a7 constraints (used for USC EE-354 final project)
 
 
 # port values from https://digilent.com/reference/programmable-logic/nexys-a7/reference-manual
@@ -51,3 +51,18 @@ set_property IOSTANDARD LVCMOS33 [get_ports {hSync}]
 
 set_property PACKAGE_PIN B12 [get_ports {vSync}]
 set_property IOSTANDARD LVCMOS33 [get_ports {vSync}]
+
+set_property PACKAGE_PIN N17 [get_ports BtnC]						
+set_property IOSTANDARD LVCMOS33 [get_ports BtnC]
+#Bank = 15, Pin name = IO_L14P_T2_SRCC_15,					Sch name = BTNU
+set_property PACKAGE_PIN M18 [get_ports BtnU]						
+set_property IOSTANDARD LVCMOS33 [get_ports BtnU]
+#Bank = CONFIG, Pin name = IO_L15N_T2_DQS_DOUT_CSO_B_14,	Sch name = BTNL
+set_property PACKAGE_PIN P17 [get_ports BtnL]						
+set_property IOSTANDARD LVCMOS33 [get_ports BtnL]
+#Bank = 14, Pin name = IO_25_14,							Sch name = BTNR
+set_property PACKAGE_PIN M17 [get_ports BtnR]						
+set_property IOSTANDARD LVCMOS33 [get_ports BtnR]
+#Bank = 14, Pin name = IO_L21P_T3_DQS_14,					Sch name = BTND
+set_property PACKAGE_PIN P18 [get_ports BtnD]						
+set_property IOSTANDARD LVCMOS33 [get_ports BtnD]
