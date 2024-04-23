@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Thu Apr 18 03:15:50 2024
+| Date             : Mon Apr 22 21:25:16 2024
 | Host             : me running 64-bit major release  (build 9200)
 | Command          : report_power -file vga_power_routed.rpt -pb vga_power_summary_routed.pb -rpx vga_power_routed.rpx
 | Design           : vga
@@ -29,20 +29,20 @@ Table of Contents
 1. Summary
 ----------
 
-+--------------------------+--------------+
-| Total On-Chip Power (W)  | 6.563        |
-| Design Power Budget (W)  | Unspecified* |
-| Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 6.425        |
-| Device Static (W)        | 0.138        |
-| Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 55.1         |
-| Junction Temperature (C) | 54.9         |
-| Confidence Level         | Low          |
-| Setting File             | ---          |
-| Simulation Activity File | ---          |
-| Design Nets Matched      | NA           |
-+--------------------------+--------------+
++--------------------------+----------------------------------+
+| Total On-Chip Power (W)  | 87.423 (Junction temp exceeded!) |
+| Design Power Budget (W)  | Unspecified*                     |
+| Power Budget Margin (W)  | NA                               |
+| Dynamic (W)              | 86.626                           |
+| Device Static (W)        | 0.797                            |
+| Effective TJA (C/W)      | 4.6                              |
+| Max Ambient (C)          | 0.0                              |
+| Junction Temperature (C) | 125.0                            |
+| Confidence Level         | Low                              |
+| Setting File             | ---                              |
+| Simulation Activity File | ---                              |
+| Design Nets Matched      | NA                               |
++--------------------------+----------------------------------+
 * Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
 
 
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.194 |     1560 |       --- |             --- |
-|   LUT as Logic |     1.095 |     1041 |     63400 |            1.64 |
-|   BUFG         |     0.041 |        3 |        32 |            9.38 |
-|   Register     |     0.032 |      218 |    126800 |            0.17 |
-|   CARRY4       |     0.024 |      102 |     15850 |            0.64 |
-|   F7/F8 Muxes  |     0.001 |       19 |     63400 |            0.03 |
-|   Others       |     0.000 |       94 |       --- |             --- |
-| Signals        |     1.073 |     1333 |       --- |             --- |
-| I/O            |     4.158 |       15 |       210 |            7.14 |
-| Static Power   |     0.138 |          |           |                 |
-| Total          |     6.563 |          |           |                 |
+| Slice Logic    |    42.476 |    26999 |       --- |             --- |
+|   LUT as Logic |    39.969 |    18983 |     63400 |           29.94 |
+|   CARRY4       |     1.791 |     1660 |     15850 |           10.47 |
+|   F7/F8 Muxes  |     0.502 |      612 |     63400 |            0.97 |
+|   Register     |     0.171 |     2308 |    126800 |            1.82 |
+|   BUFG         |     0.041 |        4 |        32 |           12.50 |
+|   Others       |     0.000 |      142 |       --- |             --- |
+| Signals        |    39.490 |    21334 |       --- |             --- |
+| I/O            |     4.661 |       20 |       210 |            9.52 |
+| Static Power   |     0.797 |          |           |                 |
+| Total          |    87.423 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,16 +72,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     2.319 |       2.271 |      0.048 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.174 |       0.152 |      0.022 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     1.180 |       1.176 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |    82.548 |      81.985 |      0.563 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.263 |       0.170 |      0.093 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     1.317 |       1.313 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.018 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -136,55 +136,78 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+--------------------------------+-----------+
-| Name                           | Power (W) |
-+--------------------------------+-----------+
-| vga                            |     6.425 |
-|   board_gfx                    |     0.152 |
-|   corner_border_check_gfx      |     0.006 |
-|   genblk1[0].red_piece_gfx     |     0.032 |
-|   genblk1[10].red_piece_gfx    |     0.016 |
-|   genblk1[11].red_piece_gfx    |     0.018 |
-|   genblk1[12].red_piece_gfx    |     0.017 |
-|   genblk1[13].red_piece_gfx    |     0.039 |
-|   genblk1[14].red_piece_gfx    |     0.040 |
-|   genblk1[15].red_piece_gfx    |     0.038 |
-|   genblk1[16].red_piece_gfx    |     0.043 |
-|   genblk1[17].red_piece_gfx    |     0.039 |
-|   genblk1[18].red_piece_gfx    |     0.038 |
-|   genblk1[19].red_piece_gfx    |     0.038 |
-|   genblk1[1].red_piece_gfx     |     0.029 |
-|   genblk1[20].red_piece_gfx    |     0.050 |
-|   genblk1[2].red_piece_gfx     |     0.031 |
-|   genblk1[3].red_piece_gfx     |     0.027 |
-|   genblk1[4].red_piece_gfx     |     0.029 |
-|   genblk1[5].red_piece_gfx     |     0.026 |
-|   genblk1[6].red_piece_gfx     |     0.017 |
-|   genblk1[7].red_piece_gfx     |     0.016 |
-|   genblk1[8].red_piece_gfx     |     0.015 |
-|   genblk1[9].red_piece_gfx     |     0.015 |
-|   genblk2[0].yellow_piece_gfx  |     0.017 |
-|   genblk2[10].yellow_piece_gfx |     0.025 |
-|   genblk2[11].yellow_piece_gfx |     0.022 |
-|   genblk2[12].yellow_piece_gfx |     0.023 |
-|   genblk2[13].yellow_piece_gfx |     0.024 |
-|   genblk2[14].yellow_piece_gfx |     0.032 |
-|   genblk2[15].yellow_piece_gfx |     0.031 |
-|   genblk2[16].yellow_piece_gfx |     0.035 |
-|   genblk2[17].yellow_piece_gfx |     0.033 |
-|   genblk2[18].yellow_piece_gfx |     0.032 |
-|   genblk2[19].yellow_piece_gfx |     0.033 |
-|   genblk2[1].yellow_piece_gfx  |     0.023 |
-|   genblk2[20].yellow_piece_gfx |     0.040 |
-|   genblk2[2].yellow_piece_gfx  |     0.024 |
-|   genblk2[3].yellow_piece_gfx  |     0.023 |
-|   genblk2[4].yellow_piece_gfx  |     0.024 |
-|   genblk2[5].yellow_piece_gfx  |     0.024 |
-|   genblk2[6].yellow_piece_gfx  |     0.024 |
-|   genblk2[7].yellow_piece_gfx  |     0.025 |
-|   genblk2[8].yellow_piece_gfx  |     0.024 |
-|   genblk2[9].yellow_piece_gfx  |     0.023 |
-|   logo_gfx                     |     0.129 |
-+--------------------------------+-----------+
++---------------------------------------+-----------+
+| Name                                  | Power (W) |
++---------------------------------------+-----------+
+| vga                                   |    86.626 |
+|   bg_tile_gfx                         |     0.001 |
+|   board_gfx                           |     0.076 |
+|   core_design                         |    79.938 |
+|   corner_border_check_gfx             |     0.063 |
+|   genblk1[0].red_piece_gfx            |     0.005 |
+|   genblk1[10].red_piece_gfx           |     0.008 |
+|   genblk1[11].red_piece_gfx           |     0.003 |
+|   genblk1[12].red_piece_gfx           |     0.007 |
+|   genblk1[13].red_piece_gfx           |     0.004 |
+|   genblk1[14].red_piece_gfx           |     0.004 |
+|   genblk1[15].red_piece_gfx           |     0.006 |
+|   genblk1[16].red_piece_gfx           |     0.004 |
+|   genblk1[17].red_piece_gfx           |     0.003 |
+|   genblk1[18].red_piece_gfx           |     0.003 |
+|   genblk1[19].red_piece_gfx           |     0.003 |
+|   genblk1[1].red_piece_gfx            |     0.006 |
+|   genblk1[20].red_piece_gfx           |     0.008 |
+|   genblk1[2].red_piece_gfx            |     0.003 |
+|   genblk1[3].red_piece_gfx            |     0.007 |
+|   genblk1[4].red_piece_gfx            |     0.003 |
+|   genblk1[5].red_piece_gfx            |     0.004 |
+|   genblk1[6].red_piece_gfx            |     0.004 |
+|   genblk1[7].red_piece_gfx            |     0.003 |
+|   genblk1[8].red_piece_gfx            |     0.006 |
+|   genblk1[9].red_piece_gfx            |     0.005 |
+|   genblk2[0].yellow_piece_gfx         |     0.003 |
+|   genblk2[10].yellow_piece_gfx        |     0.003 |
+|   genblk2[11].yellow_piece_gfx        |     0.003 |
+|   genblk2[12].yellow_piece_gfx        |     0.009 |
+|   genblk2[13].yellow_piece_gfx        |     0.004 |
+|   genblk2[14].yellow_piece_gfx        |     0.004 |
+|   genblk2[15].yellow_piece_gfx        |     0.004 |
+|   genblk2[16].yellow_piece_gfx        |     0.004 |
+|   genblk2[17].yellow_piece_gfx        |     0.011 |
+|   genblk2[18].yellow_piece_gfx        |     0.008 |
+|   genblk2[19].yellow_piece_gfx        |     0.005 |
+|   genblk2[1].yellow_piece_gfx         |     0.007 |
+|   genblk2[20].yellow_piece_gfx        |     0.004 |
+|   genblk2[2].yellow_piece_gfx         |     0.007 |
+|   genblk2[3].yellow_piece_gfx         |     0.008 |
+|   genblk2[4].yellow_piece_gfx         |     0.004 |
+|   genblk2[5].yellow_piece_gfx         |     0.005 |
+|   genblk2[6].yellow_piece_gfx         |     0.008 |
+|   genblk2[7].yellow_piece_gfx         |     0.004 |
+|   genblk2[8].yellow_piece_gfx         |     0.006 |
+|   genblk2[9].yellow_piece_gfx         |     0.008 |
+|   genblk3[0].yellow_win_highlight_gfx |     0.003 |
+|   genblk3[1].yellow_win_highlight_gfx |     0.002 |
+|   genblk3[2].yellow_win_highlight_gfx |     0.001 |
+|   genblk3[3].yellow_win_highlight_gfx |     0.002 |
+|   genblk3[4].yellow_win_highlight_gfx |     0.003 |
+|   genblk3[5].yellow_win_highlight_gfx |     0.003 |
+|   genblk3[6].yellow_win_highlight_gfx |     0.001 |
+|   genblk4[0].red_win_highlight_gfx    |     0.002 |
+|   genblk4[1].red_win_highlight_gfx    |     0.004 |
+|   genblk4[2].red_win_highlight_gfx    |     0.003 |
+|   genblk4[3].red_win_highlight_gfx    |     0.001 |
+|   genblk4[4].red_win_highlight_gfx    |     0.002 |
+|   genblk4[5].red_win_highlight_gfx    |     0.004 |
+|   genblk4[6].red_win_highlight_gfx    |     0.003 |
+|   logo_gfx                            |     0.185 |
+|   red_indicator_gfx                   |     0.002 |
+|   red_wins_gfx                        |     0.033 |
+|   reds_turn_gfx                       |     0.012 |
+|   tie_game_gfx                        |     0.036 |
+|   yellow_indicator_gfx                |     0.003 |
+|   yellow_wins_gfx                     |     0.048 |
+|   yellows_turn_gfx                    |     0.012 |
++---------------------------------------+-----------+
 
 

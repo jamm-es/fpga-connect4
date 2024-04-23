@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Thu Apr 18 03:15:25 2024
+| Date         : Mon Apr 22 21:24:10 2024
 | Host         : me running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file vga_control_sets_placed.rpt
 | Design       : vga
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    12 |
-|    Minimum number of control sets                        |    12 |
+| Total control sets                                       |   456 |
+|    Minimum number of control sets                        |   456 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    54 |
+| Unused register locations in slices containing registers |  2716 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    12 |
-| >= 0 to < 4        |     4 |
-| >= 4 to < 6        |     0 |
-| >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     2 |
-| >= 10 to < 12      |     0 |
-| >= 12 to < 14      |     3 |
-| >= 14 to < 16      |     0 |
-| >= 16              |     1 |
+| Total control sets |   456 |
+| >= 0 to < 4        |   298 |
+| >= 4 to < 6        |    42 |
+| >= 6 to < 8        |    42 |
+| >= 8 to < 10       |    43 |
+| >= 10 to < 12      |    17 |
+| >= 12 to < 14      |     4 |
+| >= 14 to < 16      |     1 |
+| >= 16              |     9 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,33 +58,477 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             147 |           95 |
-| No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              30 |           10 |
-| Yes          | No                    | No                     |              16 |            7 |
-| Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              25 |            8 |
+| No           | No                    | No                     |             204 |          143 |
+| No           | No                    | Yes                    |             513 |          393 |
+| No           | Yes                   | No                     |             119 |          102 |
+| Yes          | No                    | No                     |              16 |            6 |
+| Yes          | No                    | Yes                    |            1416 |          769 |
+| Yes          | Yes                   | No                     |              40 |           12 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------------+---------------+-------------------+------------------+----------------+--------------+
-|      Clock Signal     | Enable Signal |  Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+-----------------------+---------------+-------------------+------------------+----------------+--------------+
-|  pixClk_BUFG          | hSync_i_1_n_0 |                   |                1 |              1 |         1.00 |
-|  lineClk_reg_n_0_BUFG |               |                   |                1 |              1 |         1.00 |
-|  lineClk_reg_n_0_BUFG | vSync_i_1_n_0 |                   |                1 |              1 |         1.00 |
-|  sysClk_IBUF_BUFG     |               |                   |                1 |              2 |         2.00 |
-|  pixClk_BUFG          | hState        |                   |                2 |              7 |         3.50 |
-|  lineClk_reg_n_0_BUFG | vState        |                   |                3 |              7 |         2.33 |
-|  pixClk_BUFG          |               | hCnt[9]_i_1_n_0   |                3 |              9 |         3.00 |
-|  lineClk_reg_n_0_BUFG |               | vCnt[9]_i_1_n_0   |                5 |              9 |         1.80 |
-|  pixClk_BUFG          |               | vgaRed[3]_i_1_n_0 |                2 |             12 |         6.00 |
-|  lineClk_reg_n_0_BUFG | pixY          | pixY0             |                3 |             12 |         4.00 |
-|  pixClk_BUFG          | pixX          | lineClk           |                5 |             13 |         2.60 |
-|  pixClk_BUFG          |               |                   |               93 |            144 |         1.55 |
-+-----------------------+---------------+-------------------+------------------+----------------+--------------+
++--------------------------------------------------------+----------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
+|                      Clock Signal                      |                    Enable Signal                   |                    Set/Reset Signal                   | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------------------------+----------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
+|  core_design/redPieceYOffset_reg[18][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[18][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[18][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[18][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[19][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[19][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[19][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[19][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[20][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[20][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[20][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[20][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[2][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[2][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[2][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[2][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[3][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[3][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[3][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[3][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[4][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[4][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[4][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[4][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[5][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[5][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[5][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[5][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[6][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[6][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[6][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[6][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[7][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[7][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[7][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[7][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[8][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[8][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[8][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[8][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[9][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[9][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[9][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[9][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[0][9]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[0][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[0][8]_LDC_i_1_n_0     |                                                    | core_design/redPieceYOffset_reg[0][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[10][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[10][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[10][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[10][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[11][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[11][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[11][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[11][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[12][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[12][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[12][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[12][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[13][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[13][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[13][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[13][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[14][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[14][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[14][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[14][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[15][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[15][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[15][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[15][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[16][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[16][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[16][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[16][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[17][9]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[17][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  core_design/redPieceYOffset_reg[17][8]_LDC_i_1_n_0    |                                                    | core_design/redPieceYOffset_reg[17][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    |                                                       |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][1]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[18][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[18][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[19][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[19][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[20][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[20][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[2][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[2][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[3][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[3][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[4][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[4][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[5][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[5][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[6][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[6][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[7][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[7][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[8][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[8][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[9][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[9][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[0][8]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[0][9]_LDC_i_2_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[10][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[10][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[11][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[11][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[13][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[12][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[12][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[13][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[14][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[14][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[15][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[15][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[16][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[16][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[17][8]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/redPieceYOffset_reg[17][9]_LDC_i_2_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[19][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[1][3]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[19][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[0][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[10][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[0][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[10][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[11][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[11][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[12][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[12][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[13][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[13][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[14][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[14][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[15][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[15][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[17][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[17][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[18][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[18][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[1][5]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[1][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[1][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[20][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[20][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[2][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[2][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[3][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[3][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[4][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[4][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[5][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[5][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][1]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][3]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[6][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[6][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][0]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][2]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][7]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][5]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][6]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[7][4]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][2]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][6]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][3]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][1]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][4]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][0]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][5]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[8][7]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[9][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/yellowPieceYOffset_reg[9][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][4]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][0]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][5]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][3]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][7]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[6][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[6][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[6][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[6][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[9][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[9][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[9][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[9][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  lineClk_reg_n_0_BUFG                                  | vSync_i_1_n_0                                      |                                                       |                1 |              1 |         1.00 |
+|  pixClk_BUFG                                           | hSync_i_1_n_0                                      |                                                       |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[19][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[19][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[1][3]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[1][3]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[0][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[0][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[0][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[0][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[10][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[10][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[10][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[10][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[11][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[11][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[11][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[11][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[12][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[12][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[12][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[12][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[13][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[13][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[13][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[13][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[14][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[14][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[14][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[14][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[15][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[15][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[15][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[15][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[17][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[17][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[17][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[17][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[18][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[18][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[20][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[20][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[20][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[20][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[2][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[2][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[2][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[2][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[3][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[3][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[3][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[3][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[4][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[4][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[4][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[4][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[5][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[5][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[5][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[5][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[6][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[6][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[6][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[6][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[7][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[7][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[7][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[7][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[8][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[8][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[8][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[8][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[9][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[9][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[9][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[9][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[18][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[18][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[1][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[1][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[1][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[1][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[1][5]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[1][5]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[20][9]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[20][9]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[20][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[20][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[2][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[2][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[2][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[2][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[3][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[3][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[3][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[3][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[4][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[4][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[4][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[4][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[5][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[5][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[5][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[5][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][1]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][1]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][0]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][0]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[6][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[6][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][2]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][2]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][3]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][3]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[6][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[6][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][7]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][7]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][6]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][6]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][5]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][5]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[7][4]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[7][4]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][2]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][2]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][6]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][6]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][1]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][1]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][4]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][4]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][0]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][0]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][5]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][5]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][3]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][3]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[8][7]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[8][7]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[9][8]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[9][8]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[9][9]_LDC_i_1_n_0  |                                                    | core_design/yellowPieceYOffset_reg[9][9]_LDC_i_2_n_0  |                1 |              1 |         1.00 |
+|  core_design/yellowPieceYOffset_reg[19][8]_LDC_i_1_n_0 |                                                    | core_design/yellowPieceYOffset_reg[19][8]_LDC_i_2_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[0][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[0][9]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[0][9]_P_i_1_n_0        | core_design/redPieceYOffset_reg[0][8]_LDC_i_1_n_0     |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[10][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[10][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[10][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[10][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[11][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[11][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[11][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[11][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[12][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[12][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[12][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[12][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[13][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[13][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[13][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[13][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[14][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[14][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[14][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[14][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[15][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[15][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[15][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[15][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[16][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[16][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[16][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[16][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[17][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[17][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[17][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[17][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[18][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[18][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[18][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[18][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[19][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[19][9]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYOffset[19][9]_P_i_1_n_0       | core_design/redPieceYOffset_reg[19][8]_LDC_i_1_n_0    |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[17][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[17][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[17][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[17][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[0][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[0][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[0][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[0][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[10][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[10][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[10][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[10][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[11][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[11][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[11][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[11][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[12][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[12][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[12][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[12][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[13][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[13][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[13][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[13][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[14][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[14][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[14][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[14][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[15][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[15][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[15][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[15][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[18][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[18][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[18][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[18][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[19][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[19][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[19][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[19][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[1][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[1][3]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[1][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[1][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[1][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[1][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[1][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[1][5]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[20][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[20][9]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[20][9]_P_i_1_n_0    | core_design/yellowPieceYOffset_reg[20][8]_LDC_i_1_n_0 |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[2][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[2][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[2][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[2][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[3][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[3][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[3][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[3][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[4][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[4][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[4][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[4][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[5][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[5][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[5][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[5][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][1]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][0]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][2]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][3]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][7]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][6]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][5]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][8]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][9]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[7][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[7][4]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][2]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYOffset[8][9]_P_i_1_n_0     | core_design/yellowPieceYOffset_reg[8][6]_LDC_i_1_n_0  |                1 |              1 |         1.00 |
+|  sysClk_IBUF_BUFG                                      |                                                    |                                                       |                1 |              2 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[6][4]_i_1_n_0        | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[15][4]_i_1_n_0    | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[8][4]_i_1_n_0     | core_design/reset                                     |                3 |              5 |         1.67 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[9][4]_i_1_n_0     | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[7][4]_i_1_n_0     | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[6][4]_i_1_n_0     | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[16][4]_i_1_n_0    | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[17][4]_i_1_n_0    | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[15][4]_i_1_n_0       | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[16][4]_i_1_n_0       | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[18][4]_i_1_n_0       | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[19][4]_i_1_n_0       | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[20][4]_i_1_n_0       | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[1][4]_i_1_n_0        | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[4][4]_i_1_n_0        | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[2][4]_i_1_n_0        | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[3][4]_i_1_n_0        | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[7][4]_i_1_n_0        | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[19][4]_i_1_n_0    | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[5][4]_i_1_n_0        | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[8][4]_i_1_n_0        | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[9][4]_i_1_n_0        | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[1][4]_i_1_n_0     | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[2][4]_i_1_n_0     | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[20][4]_i_1_n_0    | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity                      | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[0][4]_i_1_n_0        | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[10][4]_i_1_n_0       | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[12][4]_i_1_n_0       | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[11][4]_i_1_n_0       | core_design/reset                                     |                3 |              5 |         1.67 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[13][4]_i_1_n_0       | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceYVelocity[14][4]_i_1_n_0       | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[3][4]_i_1_n_0     | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[5][4]_i_1_n_0     | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[14][4]_i_1_n_0    | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[13][4]_i_1_n_0    | core_design/reset                                     |                3 |              5 |         1.67 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[12][4]_i_1_n_0    | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[4][4]_i_1_n_0     | core_design/reset                                     |                3 |              5 |         1.67 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[11][4]_i_1_n_0    | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[10][4]_i_1_n_0    | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[0][4]_i_1_n_0     | core_design/reset                                     |                4 |              5 |         1.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceYVelocity[18][4]_i_1_n_0    | core_design/reset                                     |                5 |              5 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToCol[2][2]_i_1_n_0         | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToCol[4][2]_i_1_n_0         | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToCol[0][2]_i_1_n_0         | core_design/reset                                     |                5 |              6 |         1.20 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToCol[1][2]_i_1_n_0         | core_design/reset                                     |                4 |              6 |         1.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[12][2]_i_1_n_0        | core_design/reset                                     |                4 |              6 |         1.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[10][2]_i_1_n_0        | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[11][2]_i_1_n_0        | core_design/reset                                     |                4 |              6 |         1.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[13][2]_i_1_n_0        | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[16][2]_i_1_n_0           | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[15][2]_i_1_n_0        | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[16][2]_i_1_n_0        | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[14][2]_i_1_n_0        | core_design/reset                                     |                4 |              6 |         1.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[18][2]_i_1_n_0           | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[12][2]_i_1_n_0           | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[2][2]_i_1_n_0            | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[1][2]_i_1_n_0            | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[14][2]_i_1_n_0           | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[17][2]_i_1_n_0        | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[6][2]_i_1_n_0            | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[19][2]_i_1_n_0           | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[17][2]_i_1_n_0           | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[9][2]_i_1_n_0            | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[10][2]_i_1_n_0           | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[3][2]_i_1_n_0            | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[4][2]_i_1_n_0            | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[7][2]_i_1_n_0            | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToCol[13][2]_i_1_n_0           | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToRow                          | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndexToRow[20][2]_i_1_n_0           | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[18][2]_i_1_n_0        | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[19][2]_i_1_n_0        | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[20][2]_i_1_n_0        | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[5][2]_i_1_n_0         | core_design/reset                                     |                4 |              6 |         1.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[6][2]_i_1_n_0         | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[8][2]_i_1_n_0         | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[9][2]_i_1_n_0         | core_design/reset                                     |                3 |              6 |         2.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToRow[7][2]_i_1_n_0         | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndexToCol[3][2]_i_1_n_0         | core_design/reset                                     |                2 |              6 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/showYellowWinIndicator[6]_i_1_n_0      | core_design/reset                                     |                4 |              7 |         1.75 |
+|  lineClk_reg_n_0_BUFG                                  | vState                                             |                                                       |                2 |              7 |         3.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/showRedWinIndicator[6]_i_1_n_0         | core_design/reset                                     |                4 |              7 |         1.75 |
+|  pixClk_BUFG                                           | hState__0                                          |                                                       |                2 |              7 |         3.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[2][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[19][9]_i_1_n_0      | core_design/reset                                     |                5 |              9 |         1.80 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[12][9]_i_1_n_0      | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[4][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[1][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[11][9]_i_1_n_0      | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[7][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[8][9]_i_1_n_0          | core_design/reset                                     |                2 |              9 |         4.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[14][9]_i_1_n_0      | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[3][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[6][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[10][9]_i_1_n_0         | core_design/reset                                     |                2 |              9 |         4.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[19][9]_i_1_n_0         | core_design/reset                                     |                6 |              9 |         1.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[5][9]_i_1_n_0          | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[3][9]_i_1_n_0          | core_design/reset                                     |                4 |              9 |         2.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[7][9]_i_1_n_0          | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[8][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[18][9]_i_1_n_0         | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[16][9]_i_1_n_0         | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset__1                  | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[13][9]_i_1_n_0         | core_design/reset                                     |                4 |              9 |         2.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[4][9]_i_1_n_0          | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[2][9]_i_1_n_0          | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[12][9]_i_1_n_0         | core_design/reset                                     |                2 |              9 |         4.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset__0                  | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[13][9]_i_1_n_0      | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[11][9]_i_1_n_0         | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[0][9]_i_1_n_0          | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[14][9]_i_1_n_0         | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset__0                     | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[6][9]_i_1_n_0          | core_design/reset                                     |                4 |              9 |         2.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[15][9]_i_1_n_0         | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[17][9]_i_1_n_0         | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[9][9]_i_1_n_0          | core_design/reset                                     |                3 |              9 |         3.00 |
+|  pixClk_BUFG                                           |                                                    | hCnt[9]_i_1_n_0                                       |                2 |              9 |         4.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[5][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redPieceXOffset[1][9]_i_1_n_0          | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[9][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[10][9]_i_1_n_0      | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[16][9]_i_1_n_0      | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[0][9]_i_1_n_0       | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[18][9]_i_1_n_0      | core_design/reset                                     |                3 |              9 |         3.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowPieceXOffset[15][9]_i_1_n_0      | core_design/reset                                     |                4 |              9 |         2.25 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redWinYOffset                          | core_design/reset                                     |                4 |             10 |         2.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redWinXOffset[4][6]_i_1_n_0            | core_design/reset                                     |                4 |             10 |         2.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redWinXOffset[5][6]_i_1_n_0            | core_design/reset                                     |                4 |             10 |         2.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redWinXOffset[0][6]_i_1_n_0            | core_design/reset                                     |                7 |             10 |         1.43 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/boardYOffset[9]_i_1_n_0                | core_design/reset                                     |                2 |             10 |         5.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redIndicatorXOffset[9]_i_1_n_0         | core_design/reset                                     |                9 |             10 |         1.11 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowWinXOffset[4][6]_i_1_n_0         | core_design/reset                                     |                3 |             10 |         3.33 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowIndicatorXOffset[9]_i_1_n_0      | core_design/reset                                     |               10 |             10 |         1.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redWinXOffset[2][6]_i_1_n_0            | core_design/reset                                     |                6 |             11 |         1.83 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redWinXOffset[6][6]_i_1_n_0            | core_design/reset                                     |                4 |             11 |         2.75 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/redWinXOffset[1][6]_i_1_n_0            | core_design/reset                                     |                6 |             11 |         1.83 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowWinXOffset[0][6]_i_1_n_0         | core_design/reset                                     |                4 |             11 |         2.75 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowWinXOffset[2][6]_i_1_n_0         | core_design/reset                                     |                6 |             11 |         1.83 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowWinXOffset[6][6]_i_1_n_0         | core_design/reset                                     |                6 |             11 |         1.83 |
+|  lineClk_reg_n_0_BUFG                                  |                                                    |                                                       |                7 |             11 |         1.57 |
+|  lineClk_reg_n_0_BUFG                                  | pixY                                               | pixY[9]_i_1_n_0                                       |                3 |             11 |         3.67 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowWinXOffset[5][6]_i_1_n_0         | core_design/reset                                     |                2 |             11 |         5.50 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowWinXOffset[3][6]_i_1_n_0         | core_design/reset                                     |                7 |             12 |         1.71 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/yellowWinYOffset__0                    | core_design/reset                                     |                6 |             12 |         2.00 |
+|  pixClk_BUFG                                           |                                                    | vgaRed[3]_i_1_n_0                                     |                2 |             12 |         6.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/currYellow[4]_i_1_n_0                  | core_design/reset                                     |                7 |             13 |         1.86 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/currRed[4]_i_1_n_0                     | core_design/reset                                     |                7 |             15 |         2.14 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/column[5]_C_i_1_n_0                    | core_design/reset                                     |                8 |             22 |         2.75 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/state_reg[5]_i_1_n_0                   | core_design/reset                                     |               13 |             28 |         2.15 |
+|  pixClk_BUFG                                           | pixX                                               | lineClk                                               |                9 |             29 |         3.22 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/animateResetTimer[0]_i_1_n_0           | core_design/reset                                     |                8 |             32 |         4.00 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/winIndicatorAnimationTimer[31]_i_1_n_0 | core_design/reset                                     |               11 |             32 |         2.91 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/pieceAnimationTimer[31]_i_1_n_0        | core_design/reset                                     |                7 |             32 |         4.57 |
+|  frameClk_reg_n_0_BUFG                                 | core_design/board[4][1]_i_1_n_0                    | core_design/reset                                     |               86 |            133 |         1.55 |
+|  pixClk_BUFG                                           |                                                    |                                                       |              134 |            190 |         1.42 |
+|  frameClk_reg_n_0_BUFG                                 |                                                    | core_design/reset                                     |              295 |            415 |         1.41 |
++--------------------------------------------------------+----------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
 
 

@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/james/Documents/vga/vga.runs/synth_1/vga.tcl"
+  variable script "C:/Users/james/Documents/fpga-connect4/vga.runs/synth_1/vga.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,43 +70,38 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_param general.maxThreads 20
-set_param chipscope.maxJobs 5
-set_param synth.incrementalSynthesisCache C:/Users/james/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22316-me/incrSyn
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/james/Documents/vga/vga.cache/wt [current_project]
-set_property parent.project_path C:/Users/james/Documents/vga/vga.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/james/Documents/fpga-connect4/vga.cache/wt [current_project]
+set_property parent.project_path C:/Users/james/Documents/fpga-connect4/vga.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/james/Documents/vga/vga.cache/ip [current_project]
+set_property ip_output_repo c:/Users/james/Documents/fpga-connect4/vga.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/james/Documents/vga/vga.srcs/sources_1/new/TESTcore_design.v
-  C:/Users/james/Documents/vga/sprite_modules/bg_tile.v
-  C:/Users/james/Documents/vga/sprite_modules/board.v
-  C:/Users/james/Documents/vga/sprite_modules/corner_border_check.v
-  C:/Users/james/Documents/vga/sprite_modules/logo.v
-  C:/Users/james/Documents/vga/sprite_modules/red_indicator.v
-  C:/Users/james/Documents/vga/sprite_modules/red_piece.v
-  C:/Users/james/Documents/vga/sprite_modules/red_wins.v
-  C:/Users/james/Documents/vga/sprite_modules/reds_turn.v
-  C:/Users/james/Documents/vga/sprite_modules/tie_game.v
-  C:/Users/james/Documents/vga/sprite_modules/yellow_indicator.v
-  C:/Users/james/Documents/vga/sprite_modules/yellow_piece.v
-  C:/Users/james/Documents/vga/sprite_modules/yellow_wins.v
-  C:/Users/james/Documents/vga/sprite_modules/yellows_turn.v
-  C:/Users/james/Documents/vga/vga.srcs/sources_1/new/vga.v
+  C:/Users/james/Documents/fpga-connect4/vga.srcs/sources_1/new/TESTcore_design.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/bg_tile.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/board.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/corner_border_check.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/logo.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/red_indicator.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/red_piece.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/red_win_highlight.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/red_wins.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/reds_turn.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/tie_game.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/yellow_indicator.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/yellow_piece.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/yellow_win_highlight.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/yellow_wins.v
+  C:/Users/james/Documents/fpga-connect4/sprite_modules/yellows_turn.v
+  C:/Users/james/Documents/fpga-connect4/vga.srcs/sources_1/new/vga.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -117,12 +112,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/james/Documents/vga/vga.srcs/constrs_1/new/vga.xdc
-set_property used_in_implementation false [get_files C:/Users/james/Documents/vga/vga.srcs/constrs_1/new/vga.xdc]
+read_xdc C:/Users/james/Documents/fpga-connect4/vga.srcs/constrs_1/new/vga.xdc
+set_property used_in_implementation false [get_files C:/Users/james/Documents/fpga-connect4/vga.srcs/constrs_1/new/vga.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/james/Documents/vga/vga.srcs/utils_1/imports/synth_1/vga.dcp
+read_checkpoint -auto_incremental -incremental C:/Users/james/Documents/fpga-connect4/vga.srcs/utils_1/imports/synth_1/vga.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

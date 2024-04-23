@@ -66,3 +66,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports BtnR]
 #Bank = 14, Pin name = IO_L21P_T3_DQS_14,					Sch name = BTND
 set_property PACKAGE_PIN P18 [get_ports BtnD]						
 set_property IOSTANDARD LVCMOS33 [get_ports BtnD]
+
+set_property PACKAGE_PIN D8 [get_ports {vgaBlu[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vgaBlu[3]}]
+
+set_property PACKAGE_PIN V10 [get_ports {switch15Debug}]
+set_property IOSTANDARD LVCMOS33 [get_ports {switch15Debug}]
+
+set_property PACKAGE_PIN C12 [get_ports {btnCPUReset}]
+set_property IOSTANDARD LVCMOS33 [get_ports {btnCPUReset}]

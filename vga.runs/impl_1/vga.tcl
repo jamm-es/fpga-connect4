@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/james/Documents/vga/vga.runs/impl_1/vga.tcl"
+  variable script "C:/Users/james/Documents/fpga-connect4/vga.runs/impl_1/vga.tcl"
   variable category "vivado_impl"
 }
 
@@ -115,8 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -124,11 +122,7 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param checkpoint.writeSynthRtdsInDcp 1
-  set_param general.maxThreads 20
   set_param chipscope.maxJobs 5
-  set_param synth.incrementalSynthesisCache C:/Users/james/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22316-me/incrSyn
-  set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 20  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a100tcsg324-1
@@ -136,15 +130,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/james/Documents/vga/vga.cache/wt [current_project]
-  set_property parent.project_path C:/Users/james/Documents/vga/vga.xpr [current_project]
-  set_property ip_output_repo C:/Users/james/Documents/vga/vga.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/james/Documents/fpga-connect4/vga.cache/wt [current_project]
+  set_property parent.project_path C:/Users/james/Documents/fpga-connect4/vga.xpr [current_project]
+  set_property ip_output_repo C:/Users/james/Documents/fpga-connect4/vga.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/james/Documents/vga/vga.runs/synth_1/vga.dcp
+  add_files -quiet C:/Users/james/Documents/fpga-connect4/vga.runs/synth_1/vga.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/james/Documents/vga/vga.srcs/constrs_1/new/vga.xdc
+  read_xdc C:/Users/james/Documents/fpga-connect4/vga.srcs/constrs_1/new/vga.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }

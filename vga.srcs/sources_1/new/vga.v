@@ -20,14 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR, BtnC);
+module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR, BtnC, switch15Debug, btnCPUReset);
     input wire sysClk;
     output reg hSync;
     output reg vSync;
     output reg[3:0] vgaRed;
     output reg[3:0] vgaGrn;
     output reg[3:0] vgaBlu;
-    input BtnL, BtnU, BtnD, BtnR, BtnC;	
+    input BtnL, BtnU, BtnD, BtnR, BtnC, switch15Debug, btnCPUReset;	
     
     // create 25 MHz pixel clock for 480x600 video output
     reg pixClk;
@@ -182,7 +182,7 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR,
     //assign btn_left = BtnL;
     //assign btn_right = BtnR;
     //assign btn_up = BtnU;
-    assign reset = BtnC;
+    assign reset = ~btnCPUReset; // cpu reset is high at rest, low when pressed
     wire showLogo;
     wire [9:0] boardYOffset;
     wire showRedsTurn;
@@ -200,7 +200,12 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR,
     wire [9:0] yellowPieceYOffset [20:0];
     wire [9:0] yellowPieceXOffset [20:0];
     wire game_over;
-    wire showCornerBorderCheck;
+    wire [9:0] yellowWinYOffset [6:0];
+    wire [9:0] yellowWinXOffset [6:0];
+    wire [9:0] redWinYOffset [6:0];
+    wire [9:0] redWinXOffset [6:0];
+    wire [6:0] showRedWinIndicator;
+    wire [6:0] showYellowWinIndicator;
     
     
     // packing so we can actually pass 2d arrays to and from modules :/
@@ -217,14 +222,25 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR,
     wire [209:0] FLAT__yellowPieceXOffset;   
     assign {yellowPieceXOffset[20],yellowPieceXOffset[19],yellowPieceXOffset[18],yellowPieceXOffset[17],yellowPieceXOffset[16],yellowPieceXOffset[15],yellowPieceXOffset[14],yellowPieceXOffset[13],yellowPieceXOffset[12],yellowPieceXOffset[11],yellowPieceXOffset[10],yellowPieceXOffset[9],yellowPieceXOffset[8],yellowPieceXOffset[7],yellowPieceXOffset[6],yellowPieceXOffset[5],yellowPieceXOffset[4],yellowPieceXOffset[3],yellowPieceXOffset[2],yellowPieceXOffset[1],yellowPieceXOffset[0]} = FLAT__yellowPieceXOffset;
      
+    wire [69:0] FLAT__yellowWinYOffset;
+    assign {yellowWinYOffset[6],yellowWinYOffset[5],yellowWinYOffset[4],yellowWinYOffset[3],yellowWinYOffset[2],yellowWinYOffset[1],yellowWinYOffset[0]} = FLAT__yellowWinYOffset;
+    
+    wire [69:0] FLAT__yellowWinXOffset;
+    assign {yellowWinXOffset[6],yellowWinXOffset[5],yellowWinXOffset[4],yellowWinXOffset[3],yellowWinXOffset[2],yellowWinXOffset[1],yellowWinXOffset[0]} = FLAT__yellowWinXOffset;
+    
+    wire [69:0] FLAT__redWinYOffset;
+    assign {redWinYOffset[6],redWinYOffset[5],redWinYOffset[4],redWinYOffset[3],redWinYOffset[2],redWinYOffset[1],redWinYOffset[0]} = FLAT__redWinYOffset;
      
+    wire [69:0] FLAT__redWinXOffset;
+    assign {redWinXOffset[6],redWinXOffset[5],redWinXOffset[4],redWinXOffset[3],redWinXOffset[2],redWinXOffset[1],redWinXOffset[0]} = FLAT__redWinXOffset;
+    
      
-    TESTcore_design core_design(
+    connect4_core_design core_design(
         .clk(frameClk),
         .reset(reset),
         .btn_left(BtnL),
         .btn_right(BtnR),
-        .btn_up(BtnU),
+        .btn_up(BtnC),
         .showLogo(showLogo),
         .boardYOffset(boardYOffset),
         .showRedsTurn(showRedsTurn),
@@ -241,7 +257,12 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR,
         .FLAT__redPieceXOffset(FLAT__redPieceXOffset),
         .FLAT__yellowPieceYOffset(FLAT__yellowPieceYOffset),
         .FLAT__yellowPieceXOffset(FLAT__yellowPieceXOffset),
-        .showCornerBorderCheck(showCornerBorderCheck),
+        .FLAT__yellowWinYOffset(FLAT__yellowWinYOffset),
+        .FLAT__yellowWinXOffset(FLAT__yellowWinXOffset),
+        .FLAT__redWinYOffset(FLAT__redWinYOffset),
+        .FLAT__redWinXOffset(FLAT__redWinXOffset),
+        .showRedWinIndicator(showRedWinIndicator),
+        .showYellowWinIndicator(showYellowWinIndicator),
         .game_over(game_over)
     );
 
@@ -310,7 +331,28 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR,
     endgenerate
     
     
+    genvar yellowWinI;
+    wire [3:0] yellowWinPI [6:0];
+    wire yellowWinValid [6:0]; 
+    generate
+    for(yellowWinI = 0; yellowWinI < 7; yellowWinI = yellowWinI+1) begin
+        yellow_win_highlight yellow_win_highlight_gfx(.clk(pixClk), .x((pixX >> 2) - yellowWinXOffset[yellowWinI]), .y((pixY >> 2) - yellowWinYOffset[yellowWinI]), .paletteIndex(yellowWinPI[yellowWinI]), .valid(yellowWinValid[yellowWinI]));
+    end 
+    endgenerate
+    
+    
+    genvar redWinI;
+    wire [3:0] redWinPI [6:0];
+    wire redWinValid [6:0]; 
+    generate
+    for(redWinI = 0; redWinI < 7; redWinI = redWinI+1) begin
+        red_win_highlight red_win_highlight_gfx(.clk(pixClk), .x((pixX >> 2) - redWinXOffset[redWinI]), .y((pixY >> 2) - redWinYOffset[redWinI]), .paletteIndex(redWinPI[redWinI]), .valid(redWinValid[redWinI]));
+    end 
+    endgenerate
+    
+    
 
+    reg [3:0] winIndicatorIndex;
     reg [3:0] frontIndex;
     reg [3:0] pieceIndex;
     reg [3:0] finalIndex;
@@ -324,7 +366,20 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR,
         else begin: pixel_block
         
             // front layer priority
-            if(cornerBorderCheckValid && showCornerBorderCheck) begin
+            winIndicatorIndex = 4'b1111;
+            for(pieceI = 0; pieceI < 7; pieceI = pieceI+1) begin
+                if(yellowWinValid[pieceI] && showYellowWinIndicator[pieceI]) begin
+                    winIndicatorIndex = yellowWinPI[pieceI];
+                end
+            end
+            for(pieceI = 0; pieceI < 7; pieceI = pieceI+1) begin
+                if(redWinValid[pieceI] && showRedWinIndicator[pieceI]) begin
+                    winIndicatorIndex = redWinPI[pieceI];
+                end
+            end
+            
+            // show debug outline only if switch15 is enabled
+            if(cornerBorderCheckValid && switch15Debug) begin
                 frontIndex = cornerBorderCheckPI;
             end
             else if(logoValid && showLogo) begin
@@ -370,7 +425,10 @@ module vga(sysClk, hSync, vSync, vgaRed, vgaGrn, vgaBlu, BtnL, BtnU, BtnD, BtnR,
                 end
             end 
             
-            if(frontIndex != 4'b1111) begin
+            if(winIndicatorIndex != 4'b1111) begin
+                finalIndex = winIndicatorIndex;
+            end
+            else if(frontIndex != 4'b1111) begin
                 finalIndex = frontIndex;
             end
             else if(pieceIndex != 4'b1111) begin
