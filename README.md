@@ -7,6 +7,8 @@ Open and run this project in Vivado to flash it onto the FPGA. Graphics are outp
 `gen_sprite.py` is responsible for generating sprite modules (in `/sprite_modules`) based on input images 
 (stored in `/sprites`). Requires the `pillow` library.
 
+`palette.txt` specifies the colors used in the sprites, and is an input for `gen_sprite.py`
+
 `Makefile` uses `gen_sprite.py` to ensure that all the sprite modules are up to date with any sprite image revisions. 
 Run `make sprites` to run `gen_sprite.py` for 
 all required sprites in the project, or `make clean` to remove all the sprite modules so they may be regenerated.
