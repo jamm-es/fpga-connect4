@@ -6,7 +6,10 @@ Open and run this project in Vivado to flash it onto the FPGA. Graphics are outp
 
 
 
-https://github.com/jamm-es/fpga-connect4/assets/68095432/f97a2382-5678-4951-92e7-7a8f1444f351
+
+https://github.com/jamm-es/fpga-connect4/assets/68095432/974696a1-dcd0-4bcc-a1b8-7fae1bfbc717
+
+
 
 
 
