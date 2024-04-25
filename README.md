@@ -2,6 +2,14 @@
 
 Open and run this project in Vivado to flash it onto the FPGA. Graphics are outputted as a 640x480 VGA signal.
 
+### Demo video
+
+
+
+https://github.com/jamm-es/fpga-connect4/assets/68095432/f97a2382-5678-4951-92e7-7a8f1444f351
+
+
+
 ### Supplemental files
 
 `gen_sprite.py` is responsible for generating sprite modules (in `/sprite_modules`) based on input images 
